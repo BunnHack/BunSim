@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+  <!-- ...existing content... -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompt + Right Sidebar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "nanoid": "https://esm.sh/nanoid@5.0.7?bundle",
+      "lucide": "https://esm.sh/lucide@0.468.0"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Top prompt bar -->
+  <header class="topbar" role="banner">
+    <button class="sidebar-toggle" aria-label="Toggle sidebar" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <button class="icon-btn refresh-btn" aria-label="Refresh">
+      <i data-lucide="refresh-ccw"></i>
+    </button>
+    <button class="icon-btn home-btn" aria-label="Home">
+      <i data-lucide="home"></i>
+    </button>
+    <form id="prompt-form" class="prompt-form" role="search" aria-label="Prompt input">
+      <textarea id="prompt-input" name="prompt" class="prompt-input" rows="1" placeholder="Type a prompt and press Enter..." aria-label="Prompt"></textarea>
+      <button class="labs-btn" type="button" aria-label="Open Labs" aria-haspopup="menu" aria-expanded="false">
+        <i data-lucide="flask-conical"></i>
+      </button>
+      <div id="labs-menu" class="labs-menu" role="menu" hidden></div>
+      <button id="model-btn" class="model-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="model-menu">GPT-4o</button>
+      <div id="model-menu" class="model-menu" role="listbox" hidden></div>
+      <button id="send-btn" class="prompt-submit" type="submit" aria-label="Submit prompt">Send</button>
+    </form>
+    <button class="icon-btn notifications-btn" aria-label="Notifications">
+      <i data-lucide="bell"></i>
+    </button>
+    <button class="icon-btn more-btn" aria-label="More options" aria-haspopup="menu" aria-expanded="false">
+      <i data-lucide="more-horizontal"></i>
+    </button>
+    <div id="more-menu" class="more-menu" role="menu" hidden>
+      <button id="view-source-btn" type="button" role="menuitem">View Source</button>
+      <button id="copy-url-btn" type="button" role="menuitem">Copy URL</button>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <div class="layout">
+    <main id="content" class="content" role="main" tabindex="-1" aria-live="polite">
+      <div class="empty">
+        <h1>Welcome</h1>
+        <p>Use the prompt bar above to add items. Tip: Press / or Cmd/Ctrl + K to focus.</p>
+      </div>
+    </main>
+
+    <aside id="sidebar" class="sidebar" aria-label="Right sidebar">
+      <div class="tabs" role="tablist" aria-label="Sidebar tabs">
+        <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-shortcuts" id="tab-shortcuts">Shortcuts</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-filters" id="tab-filters">Filters</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-status" id="tab-status">Status</button>
+      </div>
+      <section id="panel-shortcuts" class="tabpanel is-active" role="tabpanel" aria-labelledby="tab-shortcuts">
+        <div class="sidebar-section">
+          <h2>Shortcuts</h2>
+          <ul>
+            <li>/ — Focus prompt</li>
+            <li>Enter — Submit</li>
+            <li>Esc — Clear input</li>
+          </ul>
+        </div>
+      </section>
+      <section id="panel-filters" class="tabpanel" role="tabpanel" aria-labelledby="tab-filters" hidden>
+        <div class="sidebar-section">
+          <h2>Filters</h2>
+          <div class="filter">
+            <label><input type="checkbox" id="filter-even" /> Show only even items</label>
+          </div>
+          <div class="filter">
+            <label><input type="checkbox" id="filter-odd" /> Show only odd items</label>
+          </div>
+        </div>
+      </section>
+      <section id="panel-status" class="tabpanel" role="tabpanel" aria-labelledby="tab-status" hidden>
+        <div class="sidebar-section">
+          <h2>Status</h2>
+          <p id="status-count">0 items</p>
+        </div>
+      </section>
+      <div class="sidebar-prompt">
+        <form id="prompt-form-side" class="prompt-form" role="search" aria-label="Prompt input (sidebar)">
+          <textarea id="prompt-input-side" name="prompt" class="prompt-input" rows="1" placeholder="Type a prompt and press Enter..." aria-label="Prompt (sidebar)"></textarea>
+          <button class="labs-btn" type="button" aria-label="Open Labs (sidebar)" aria-haspopup="menu" aria-expanded="false">
+            <i data-lucide="flask-conical"></i>
+          </button>
+          <div id="labs-menu-side" class="labs-menu" role="menu" hidden></div>
+          <button id="model-btn-side" class="model-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="model-menu-side">GPT-4o</button>
+          <div id="model-menu-side" class="model-menu" role="listbox" hidden></div>
+          <button id="send-btn-side" class="prompt-submit" type="submit" aria-label="Submit prompt (sidebar)">Send</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+  <!-- ...existing content... -->
+</body>
+</html>
